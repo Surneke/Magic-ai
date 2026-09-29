@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 export function Icon({
@@ -26,10 +27,10 @@ export function Icon({
 
 export function Logo() {
   return (
-    <a href="#top" className="flex items-center gap-2.5">
+    <Link href="/" className="flex items-center gap-2.5">
       <Icon name="star" width={22} />
       <span className="text-h4 text-ink">Magic AI</span>
-    </a>
+    </Link>
   );
 }
 
@@ -56,12 +57,12 @@ export function Button({
     ghost: "text-ink hover:bg-white/5",
   };
   return (
-    <a
+    <Link
       href={href}
       className={`inline-flex items-center justify-center rounded-full text-label-m whitespace-nowrap transition ${sizes[size]} ${variants[variant]} ${className}`}
     >
       {children}
-    </a>
+    </Link>
   );
 }
 

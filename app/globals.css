@@ -17,6 +17,21 @@
   --color-vip: #f5c451; /* status/vip */
   --color-success: #8ce5be;
   --color-enroll: #08252d;
+
+  /* Course catalogue palette */
+  --color-navy: #0a1020;
+  --color-navy-2: #111b2f;
+  --color-sky: #57d9ff;
+  --color-snow: #f7faff;
+  --color-mist: #a9b7cc;
+  --color-paper: #f3f6fa;
+  --color-paper-2: #f5f8ff;
+  --color-paper-blue: #eaf2ff;
+  --color-rule: #d8e0ea;
+  --color-blue: #146ef5;
+  --color-slate: #0b1220;
+  --color-slate-2: #3f4b5e;
+  --color-slate-3: #667085;
 }
 
 /* Type styles from the Figma file */

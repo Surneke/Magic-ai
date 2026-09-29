@@ -70,7 +70,7 @@ export function Faq() {
           Have a different question?
         </span>
         <a
-          href='mailto:hello@magicai.mn'
+          href='mailto:magiccodeai@gmail.com '
           className='text-label-m text-cyan hover:underline'
         >
           Talk to an advisor →

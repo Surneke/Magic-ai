@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export function SyllabusForm() {
+export function SyllabusForm({
+  title = "Get the full syllabus",
+  description = "See the week-by-week plan, project briefs, and enrollment options.",
+}: {
+  title?: string;
+  description?: string;
+}) {
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -13,10 +19,8 @@ export function SyllabusForm() {
       }}
       className="flex w-full shrink-0 flex-col gap-4 rounded-[10px] bg-canvas p-[26px] lg:w-[430px]"
     >
-      <h3 className="text-h4 text-ink">Get the full syllabus</h3>
-      <p className="text-body-s text-ink-2">
-        See the week-by-week plan, project briefs, and enrollment options.
-      </p>
+      <h3 className="text-h4 text-ink">{title}</h3>
+      <p className="text-body-s text-ink-2">{description}</p>
       <label className="flex flex-col gap-2">
         <span className="text-label-m text-ink-2">Work email</span>
         <input
