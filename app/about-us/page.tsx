@@ -194,85 +194,65 @@ export default function AboutUs() {
           </div>
 
           <div className='flex flex-col gap-5 rounded-2xl border border-line-strong bg-canvas p-[18px] shadow-[0_20px_48px_rgba(0,0,0,0.24)]'>
-            <span className='text-caption text-cyan'>
-              RESEARCH &amp; PROJECTS
-            </span>
-            <ul className='flex flex-col gap-3.5'>
-              <li className='flex flex-col gap-1'>
-                <span className='text-label-m text-ink'>
-                  Deep learning for space-weather ionogram processing
+            <div className='grid gap-6 md:grid-cols-2'>
+              <div className='flex flex-col gap-5'>
+                <span className='text-caption text-cyan'>
+                  RESEARCH &amp; PROJECTS
                 </span>
-                <span className='text-body-s text-ink-2'>
-                  Interdisciplinary CS × space science project at National
-                  Taiwan University, 2020–2022 — 5 international papers
-                  published.
-                </span>
-              </li>
-              <li className='flex flex-col gap-1'>
-                <span className='text-label-m text-ink'>
-                  Iris-based biometric recognition
-                </span>
-                <span className='text-body-s text-ink-2'>
-                  Data analyst on a Delta Airlines laboratory project,
-                  2018–2019.
-                </span>
-              </li>
-              <li className='flex flex-col gap-1'>
-                <span className='text-label-m text-ink'>
-                  Information security law draft team
-                </span>
-                <span className='text-body-s text-ink-2'>
-                  Contributed to Mongolia&apos;s data protection legislation,
-                  2012.
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div className='grid gap-3.5 sm:grid-cols-2'>
-            <div className='flex flex-col gap-5 rounded-2xl border border-line-strong bg-surface p-[18px]'>
-              <span className='text-caption text-cyan'>LANGUAGES</span>
-              <ul className='flex flex-col gap-2'>
-                {[
-                  { name: "Russian", level: "FLUENT" },
-                  { name: "English", level: "FLUENT" },
-                  { name: "Chinese", level: "PROFICIENT" },
-                  { name: "Japanese", level: "PROFICIENT" },
-                  { name: "Korean", level: "PROFICIENT" }
-                ].map(lang => (
-                  <li
-                    key={lang.name}
-                    className='flex items-center justify-between border-b border-line pb-2 last:border-0'
-                  >
-                    <span className='text-body-s text-ink'>{lang.name}</span>
-                    <span className='text-caption text-ink-3'>
-                      {lang.level}
+                <ul className='flex flex-col gap-3.5'>
+                  <li className='flex flex-col gap-1'>
+                    <span className='text-label-m text-ink'>
+                      Deep learning for space-weather ionogram processing
+                    </span>
+                    <span className='text-body-s text-ink-2'>
+                      Interdisciplinary CS × space science project at National
+                      Taiwan University, 2020–2022 — 5 international papers
+                      published.
                     </span>
                   </li>
-                ))}
-              </ul>
-            </div>
+                  <li className='flex flex-col gap-1'>
+                    <span className='text-label-m text-ink'>
+                      Iris-based biometric recognition
+                    </span>
+                    <span className='text-body-s text-ink-2'>
+                      Data analyst on a Delta Airlines laboratory project,
+                      2018–2019.
+                    </span>
+                  </li>
+                  <li className='flex flex-col gap-1'>
+                    <span className='text-label-m text-ink'>
+                      Information security law draft team
+                    </span>
+                    <span className='text-body-s text-ink-2'>
+                      Contributed to Mongolia&apos;s data protection legislation,
+                      2012.
+                    </span>
+                  </li>
+                </ul>
+              </div>
 
-            <div className='flex flex-col gap-5 rounded-2xl border border-line-strong bg-surface p-[18px]'>
-              <span className='text-caption text-cyan'>HONORS</span>
-              <ul className='flex flex-col gap-2'>
-                <li className='text-body-s text-ink-2'>
-                  4th place, AI session — APSCO 18th Congress, 2021
-                </li>
-                <li className='text-body-s text-ink-2'>
-                  Certificate of Honor — National University of Mongolia, 2015
-                </li>
-                <li className='text-body-s text-ink-2'>
-                  State Medal of Honored Mother, 2014
-                </li>
-                <li className='text-body-s text-ink-2'>
-                  100% Ph.D. scholarship — National Taiwan University,
-                  2018–2022
-                </li>
-                <li className='text-body-s text-ink-2'>
-                  Best Master&apos;s Graduate — Khauree ICT College, 2007
-                </li>
-              </ul>
+              <div className='flex flex-col gap-5'>
+                <span className='text-caption text-cyan'>HONORS</span>
+                <ul className='flex flex-col gap-2'>
+                  <li className='text-body-s text-ink-2'>
+                    4th place, AI session — APSCO 18th Congress, 2021
+                  </li>
+                  <li className='text-body-s text-ink-2'>
+                    Certificate of Honor — National University of Mongolia,
+                    2015
+                  </li>
+                  <li className='text-body-s text-ink-2'>
+                    State Medal of Honored Mother, 2014
+                  </li>
+                  <li className='text-body-s text-ink-2'>
+                    100% Ph.D. scholarship — National Taiwan University,
+                    2018–2022
+                  </li>
+                  <li className='text-body-s text-ink-2'>
+                    Best Master&apos;s Graduate — Khauree ICT College, 2007
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
