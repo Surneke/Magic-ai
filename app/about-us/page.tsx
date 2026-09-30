@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { Footer } from "../_components/footer"
 import { Navbar } from "../_components/navbar"
 import { Icon, sectionX } from "../_components/ui"
 
 export const metadata: Metadata = {
-  title: "About us — Magic AI",
+  title: "About us — MAGIC CODE AI",
   description:
-    "Magic Code AI is an education and technology organization helping learners build practical skills in data, AI, programming, and modern IT."
+    "MAGIC CODE AI is an education and technology organization helping learners build practical skills in data, AI, programming, and modern IT."
 }
 
 const disciplines = [
@@ -20,29 +21,24 @@ const disciplines = [
   { icon: "about-network", title: "Modern IT", detail: "CONNECT · OPERATE" }
 ]
 
-function FounderMonogram() {
+function FounderPhoto() {
   return (
-    <div className='relative h-[250px] w-[318px] max-w-full shrink-0 overflow-hidden rounded-[10px] bg-[#090b10]'>
-      <span className='absolute top-[218px] left-5 text-caption whitespace-nowrap text-ink-3'>
-        LEADERSHIP / EDUCATION / TECHNOLOGY
-      </span>
-      <div className='absolute top-5 left-5 flex items-center gap-2 rounded-full bg-white/6 px-2.5 py-[7px]'>
+    <div className='relative h-[360px] w-[318px] max-w-full shrink-0 overflow-hidden rounded-[10px] bg-[#090b10]'>
+      <Image
+        src='/bagsh.jpg'
+        alt='Enkhtuya Tsogtbaatar, Founder & CEO of MAGIC CODE AI'
+        fill
+        sizes='318px'
+        className='object-cover object-[65%_25%]'
+      />
+      <div className='absolute inset-0 bg-linear-to-t from-[#090b10] via-transparent to-[#090b10]/40' />
+      <div className='absolute top-5 left-5 flex items-center gap-2 rounded-full bg-black/40 px-2.5 py-[7px] backdrop-blur'>
         <Icon name='status-dot' width={5} />
         <span className='text-caption text-ink-2'>MAGIC CODE AI</span>
       </div>
-      <span className='absolute top-[70px] left-[159px] w-[166px] -translate-x-1/2 text-center font-mono text-[64px] font-medium text-ink'>
-        ET
+      <span className='absolute bottom-5 left-5 text-caption whitespace-nowrap text-ink-2'>
+        LEADERSHIP / EDUCATION / TECHNOLOGY
       </span>
-      <Icon
-        name='accent-glow'
-        width={132}
-        className='absolute top-[59px] left-[83px]'
-      />
-      <Icon
-        name='accent-orbit'
-        width={212}
-        className='absolute top-5 left-[43px]'
-      />
     </div>
   )
 }
@@ -62,7 +58,7 @@ export default function AboutUs() {
               ABOUT US
             </h1>
             <p className='text-body-m text-ink-2 md:w-[518px]'>
-              Magic Code AI is an education and technology organization helping
+              MAGIC CODE AI is an education and technology organization helping
               learners build practical skills in data, AI, programming, and
               modern IT.
             </p>
@@ -72,15 +68,15 @@ export default function AboutUs() {
 
         <section className={`flex flex-col gap-20 pt-4 pb-16 ${sectionX}`}>
           <article className='flex min-h-[286px] flex-col items-center gap-8 rounded-2xl border border-line-strong bg-canvas p-[18px] shadow-[0_20px_48px_rgba(0,0,0,0.24)] md:flex-row md:gap-[52px]'>
-            <FounderMonogram />
+            <FounderPhoto />
             <div className='flex min-w-0 flex-1 flex-col gap-[18px]'>
               <span className='text-caption text-cyan'>FOUNDER &amp; CEO</span>
               <h2 className='text-h4 text-ink'>
-                Enkhtuya Tsogtbaatar — Founder &amp; CEO of Magic Code AI
+                Enkhtuya Tsogtbaatar — Founder &amp; CEO of MAGIC CODE AI
               </h2>
               <div className='h-px w-12 bg-cyan' />
               <p className='max-w-[650px] text-body-s text-ink-2'>
-                Enkhtuya Tsogtbaatar leads Magic Code AI with a focus on
+                Enkhtuya Tsogtbaatar leads MAGIC CODE AI with a focus on
                 technology education and learner-centered pathways. Her work
                 brings practical skills, thoughtful guidance, and modern tools
                 together for people preparing to grow in technology.

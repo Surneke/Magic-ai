@@ -5,7 +5,7 @@ import { Navbar } from "../_components/navbar"
 import { Icon } from "../_components/ui"
 
 export const metadata: Metadata = {
-  title: "Courses — Magic AI",
+  title: "Courses — MAGIC CODE AI",
   description:
     "Choose your learning track: Data Analysis & Power BI, or the 1-year VIP course from CS foundations to intelligent systems."
 }
@@ -88,7 +88,9 @@ const pad = (n: number) => String(n).padStart(2, "0")
 
 function CourseSelector() {
   return (
-    <section className={`flex flex-col gap-10 bg-navy pt-7 pb-[72px] ${sectionX}`}>
+    <section
+      className={`flex flex-col gap-10 bg-navy pt-7 pb-[72px] ${sectionX}`}
+    >
       <div className='flex flex-wrap items-center justify-between gap-6'>
         <div className='flex items-center gap-2.5'>
           <span className='h-1 w-6 rounded-full bg-sky' />
@@ -115,7 +117,9 @@ function CourseSelector() {
 
       <div className='flex flex-col justify-between gap-6 md:flex-row md:items-end'>
         <div className='flex max-w-[820px] flex-col gap-3.5'>
-          <span className='text-caption text-sky'>Choose your learning track</span>
+          <span className='text-caption text-sky'>
+            Choose your learning track
+          </span>
           <h1 className='text-[36px] leading-[1.05] tracking-[-1.08px] text-snow md:text-[52px] md:tracking-[-1.56px]'>
             Technical depth, mapped clearly.
           </h1>
@@ -150,7 +154,9 @@ function CourseOverview() {
         </div>
         <div className='flex shrink-0 items-center gap-[9px] self-start rounded-full bg-paper-blue px-[13px] py-[9px] md:self-auto'>
           <span className='size-[7px] rounded-full bg-blue' />
-          <span className='text-caption text-blue'>Primary expanded detail</span>
+          <span className='text-caption text-blue'>
+            Primary expanded detail
+          </span>
         </div>
       </div>
 
@@ -201,7 +207,9 @@ function CourseOverview() {
 function Curriculum() {
   const total = pad(modules.length)
   return (
-    <section className={`flex flex-col gap-10 bg-white pt-[76px] pb-24 ${sectionX}`}>
+    <section
+      className={`flex flex-col gap-10 bg-white pt-[76px] pb-24 ${sectionX}`}
+    >
       <div className='h-px w-full bg-rule' />
       <div className='flex flex-col justify-between gap-6 md:flex-row md:items-end'>
         <div className='flex max-w-[720px] flex-col gap-3'>

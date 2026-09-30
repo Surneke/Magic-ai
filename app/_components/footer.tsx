@@ -30,7 +30,7 @@ export function Footer() {
           </nav>
         </div>
         <div className='flex justify-between text-caption text-ink-3'>
-          <span>© 2026 Magic Code AI. All rights reserved.</span>
+          <span>© 2026 MAGIC CODE AI LLC. All rights reserved.</span>
           <a href='mailto:magiccodeai@gmail.com ' className='hover:text-ink-2'>
             magiccodeai@gmail.com 
           </a>

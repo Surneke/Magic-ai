@@ -5,9 +5,9 @@ import { SyllabusForm } from "../_components/syllabus-form"
 import { Icon, sectionX } from "../_components/ui"
 
 export const metadata: Metadata = {
-  title: "Get started — Magic AI",
+  title: "Get started — MAGIC CODE AI",
   description:
-    "Join the next Magic AI cohort and get updates on new courses and lessons."
+    "Join the next MAGIC CODE AI cohort and get updates on new courses and lessons."
 }
 
 const benefits = [
@@ -34,7 +34,7 @@ export default function GetStarted() {
               GET STARTED
             </h1>
             <p className='text-body-m text-ink-2 md:w-[518px]'>
-              Magic Code AI is an education and technology organization helping
+              MAGIC CODE AI is an education and technology organization helping
               learners build practical skills in data, AI, programming, and
               modern IT.
             </p>
@@ -64,13 +64,13 @@ export default function GetStarted() {
 
           {/* ---- responsive web deer haragdna ---- */}
           <div className='hidden md:block'>
-            <SyllabusForm title='Мэдээлэл авах' description={updatesCopy} />
+            <SyllabusForm title='Get started' description={updatesCopy} />
           </div>
         </section>
 
         {/* ---- responsive mobile deer ---- */}
         <div className='block md:hidden'>
-          <SyllabusForm title='Мэдээлэл авах' description={updatesCopy} />
+          <SyllabusForm title='Get  started' description={updatesCopy} />
         </div>
       </main>
       <Footer />
