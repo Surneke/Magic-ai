@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { MobileMenu } from "./mobile-menu"
 import { Button, Logo, sectionX } from "./ui"
 
 const links = [
@@ -24,7 +25,12 @@ export function Navbar() {
           </Link>
         ))}
       </nav>
-      <Button href='/get-started'>Get started</Button>
+      <div className='flex items-center gap-3'>
+        <div className='hidden md:block'>
+          <Button href='/get-started'>Get started</Button>
+        </div>
+        <MobileMenu links={links} />
+      </div>
     </header>
   )
 }
