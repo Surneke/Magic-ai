@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getSiteContent, initials } from "@/lib/magic-api"
 import { Footer } from "../_components/footer"
 import { Navbar } from "../_components/navbar"
 import { Icon, sectionX } from "../_components/ui"
@@ -20,7 +21,7 @@ const disciplines = [
   { icon: "about-network", title: "Modern IT", detail: "CONNECT · OPERATE" }
 ]
 
-function FounderMonogram() {
+function FounderMonogram({ monogram }: { monogram: string }) {
   return (
     <div className='relative h-[250px] w-[318px] max-w-full shrink-0 overflow-hidden rounded-[10px] bg-[#090b10]'>
       <span className='absolute top-[218px] left-5 text-caption whitespace-nowrap text-ink-3'>
@@ -31,7 +32,7 @@ function FounderMonogram() {
         <span className='text-caption text-ink-2'>MAGIC CODE AI</span>
       </div>
       <span className='absolute top-[70px] left-[159px] w-[166px] -translate-x-1/2 text-center font-mono text-[64px] font-medium text-ink'>
-        ET
+        {monogram}
       </span>
       <Icon
         name='accent-glow'
@@ -47,7 +48,8 @@ function FounderMonogram() {
   )
 }
 
-export default function AboutUs() {
+export default async function AboutUs() {
+  const { about } = await getSiteContent()
   return (
     <>
       <Navbar />
@@ -61,29 +63,24 @@ export default function AboutUs() {
             <h1 className='text-[36px] leading-[1.06] font-medium tracking-[-0.9px] text-ink md:w-[520px] md:text-[46px] md:tracking-[-1.15px]'>
               ABOUT US
             </h1>
-            <p className='text-body-m text-ink-2 md:w-[518px]'>
-              Magic Code AI is an education and technology organization helping
-              learners build practical skills in data, AI, programming, and
-              modern IT.
-            </p>
+            <p className='text-body-m text-ink-2 md:w-[518px]'>{about.intro}</p>
           </div>
           <div className='h-px w-full bg-line' />
         </section>
 
         <section className={`flex flex-col gap-20 pt-4 pb-16 ${sectionX}`}>
           <article className='flex min-h-[286px] flex-col items-center gap-8 rounded-2xl border border-line-strong bg-canvas p-[18px] shadow-[0_20px_48px_rgba(0,0,0,0.24)] md:flex-row md:gap-[52px]'>
-            <FounderMonogram />
+            <FounderMonogram monogram={initials(about.founderName)} />
             <div className='flex min-w-0 flex-1 flex-col gap-[18px]'>
-              <span className='text-caption text-cyan'>FOUNDER &amp; CEO</span>
+              <span className='text-caption text-cyan uppercase'>
+                {about.founderRole}
+              </span>
               <h2 className='text-h4 text-ink'>
-                Enkhtuya Tsogtbaatar — Founder &amp; CEO of Magic Code AI
+                {about.founderName} — {about.founderRole} of Magic Code AI
               </h2>
               <div className='h-px w-12 bg-cyan' />
               <p className='max-w-[650px] text-body-s text-ink-2'>
-                Enkhtuya Tsogtbaatar leads Magic Code AI with a focus on
-                technology education and learner-centered pathways. Her work
-                brings practical skills, thoughtful guidance, and modern tools
-                together for people preparing to grow in technology.
+                {about.founderBio}
               </p>
             </div>
           </article>
@@ -95,15 +92,9 @@ export default function AboutUs() {
               <span className='text-caption text-cyan'>OUR MISSION</span>
             </div>
             <h2 className='text-h3 text-ink'>
-              Learning that moves from knowledge to capability.
+              {about.missionTitle}
             </h2>
-            <p className='text-body-s text-ink-2'>
-              Our mission is to make career-relevant technology learning
-              accessible, applied, and clear—so learners can move from
-              understanding concepts to building with confidence. We develop
-              future technology leaders through disciplined practice and
-              real-world problem solving.
-            </p>
+            <p className='text-body-s text-ink-2'>{about.missionBody}</p>
           </div>
 
           <ul className='grid gap-3.5 sm:grid-cols-2'>

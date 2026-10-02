@@ -1,37 +1,10 @@
+import { getSiteContent } from "@/lib/magic-api"
 import { Icon, SectionHeading, sectionX } from "./ui"
 
-const columns = [
-  [
-    {
-      q: "Do I need a computer science background?",
-      a: "No. You should be comfortable with basic Python or JavaScript, APIs, and learning by building. A short pre-course primer closes common gaps."
-    },
-    {
-      q: "How much time should I plan each week?",
-      a: "Most learners spend 6–8 hours: about 90 minutes of lessons, a live lab, project work, and one focused feedback cycle."
-    },
-    {
-      q: "Are sessions live or self-paced?",
-      a: "Both. Lessons are self-paced; labs, office hours, and project critiques run live and are recorded for your cohort."
-    }
-  ],
-  [
-    {
-      q: "What do I finish with?",
-      a: "A deployed AI system, evaluation report, architecture narrative, recorded demo, and verified credential for your portfolio."
-    },
-    {
-      q: "Can my company sponsor me?",
-      a: "Yes. We provide invoices, team bundles, manager progress summaries, and a concise learning-outcomes brief for L&D approval."
-    },
-    {
-      q: "What if the cohort is not a fit?",
-      a: "You can request a full refund within 14 days of the cohort start, provided you have completed less than 25% of the material."
-    }
-  ]
-]
-
-export function Faq() {
+export async function Faq() {
+  const { faq, contact } = await getSiteContent()
+  const half = Math.ceil(faq.length / 2)
+  const columns = [faq.slice(0, half), faq.slice(half)]
   return (
     <section className={`flex flex-col gap-14 py-20 lg:py-28 ${sectionX}`}>
       <SectionHeading
@@ -45,13 +18,13 @@ export function Faq() {
           <div key={i} className='flex flex-col'>
             {items.map(item => (
               <details
-                key={item.q}
+                key={item.question}
                 open
                 className='group border-b border-line py-[22px]'
               >
                 <summary className='flex cursor-pointer list-none items-center gap-4 [&::-webkit-details-marker]:hidden'>
                   <span className='min-w-0 flex-1 text-h4 text-ink'>
-                    {item.q}
+                    {item.question}
                   </span>
                   <Icon
                     name='plus'
@@ -59,7 +32,7 @@ export function Faq() {
                     className='transition-transform group-not-open:rotate-90'
                   />
                 </summary>
-                <p className='mt-3 text-body-s text-ink-2'>{item.a}</p>
+                <p className='mt-3 text-body-s text-ink-2'>{item.answer}</p>
               </details>
             ))}
           </div>
@@ -70,10 +43,10 @@ export function Faq() {
           Have a different question?
         </span>
         <a
-          href='mailto:magiccodeai@gmail.com '
+          href={`mailto:${contact.email}`}
           className='text-label-m text-cyan hover:underline'
         >
-          Talk to an advisor →
+          {contact.advisorCta}
         </a>
       </div>
     </section>

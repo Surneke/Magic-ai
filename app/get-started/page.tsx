@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getSiteContent } from "@/lib/magic-api"
 import { Footer } from "../_components/footer"
 import { Navbar } from "../_components/navbar"
 import { SyllabusForm } from "../_components/syllabus-form"
@@ -10,16 +11,8 @@ export const metadata: Metadata = {
     "Join the next Magic AI cohort and get updates on new courses and lessons."
 }
 
-const benefits = [
-  "14-day guarantee",
-  "Split pay available",
-  "Lifetime lesson access"
-]
-
-const updatesCopy =
-  "Та шинээр нээгдсэн сургалт, хичээл энэ бүгдийн талаар цаг алдалгүй мэдээлэл авч баймаар байна уу?"
-
-export default function GetStarted() {
+export default async function GetStarted() {
+  const { cohort, about } = await getSiteContent()
   return (
     <>
       <Navbar />
@@ -33,11 +26,7 @@ export default function GetStarted() {
             <h1 className='text-[36px] leading-[1.06] font-medium tracking-[-0.9px] text-ink md:w-130 md:text-[46px] md:tracking-[-1.15px]'>
               GET STARTED
             </h1>
-            <p className='text-body-m text-ink-2 md:w-[518px]'>
-              Magic Code AI is an education and technology organization helping
-              learners build practical skills in data, AI, programming, and
-              modern IT.
-            </p>
+            <p className='text-body-m text-ink-2 md:w-[518px]'>{about.intro}</p>
           </div>
           <div className='h-px w-full bg-line' />
         </section>
@@ -46,14 +35,14 @@ export default function GetStarted() {
         >
           <div className='flex min-w-0 flex-1 flex-col gap-5'>
             <span className='text-caption text-cyan'>
-              Next cohort begins 19 October
+              {cohort.label}
             </span>
             <h2 className='text-[32px] leading-[1.08] font-medium tracking-[-0.8px] text-ink md:text-[46px] md:tracking-[-1.15px]'>
-              Your first production-grade AI build starts here.
+              {cohort.title}
             </h2>
-            <p className='text-body-s text-ink-2'>{updatesCopy}</p>
+            <p className='text-body-s text-ink-2'>{cohort.updatesCopy}</p>
             <ul className='flex flex-wrap gap-x-6 gap-y-3'>
-              {benefits.map(benefit => (
+              {cohort.benefits.map(benefit => (
                 <li key={benefit} className='flex items-center gap-2'>
                   <Icon name='check' width={14} />
                   <span className='text-caption text-ink-2'>{benefit}</span>
@@ -64,13 +53,21 @@ export default function GetStarted() {
 
           {/* ---- responsive web deer haragdna ---- */}
           <div className='hidden md:block'>
-            <SyllabusForm title='Мэдээлэл авах' description={updatesCopy} />
+            <SyllabusForm
+              title={cohort.updatesTitle}
+              description={cohort.updatesCopy}
+              source='get-started'
+            />
           </div>
         </section>
 
         {/* ---- responsive mobile deer ---- */}
         <div className='block md:hidden'>
-          <SyllabusForm title='Мэдээлэл авах' description={updatesCopy} />
+          <SyllabusForm
+            title={cohort.updatesTitle}
+            description={cohort.updatesCopy}
+            source='get-started'
+          />
         </div>
       </main>
       <Footer />

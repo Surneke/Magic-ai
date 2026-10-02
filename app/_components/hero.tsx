@@ -1,3 +1,4 @@
+import { getSiteContent } from "@/lib/magic-api";
 import { Button, Icon, sectionX } from "./ui";
 
 const stages = [
@@ -95,7 +96,8 @@ function ModelWorkspace() {
   );
 }
 
-export function Hero() {
+export async function Hero() {
+  const { hero } = await getSiteContent();
   return (
     <section
       id="top"
@@ -105,27 +107,27 @@ export function Hero() {
         <div className="flex items-center gap-2.5 rounded-full border border-line-strong bg-white/6 px-3 py-2">
           <Icon name="live-indicator" width={7} />
           <span className="text-caption text-ink-2">
-            October cohort • applications open
+            {hero.badge}
           </span>
         </div>
         <h1 className="text-[44px] leading-[0.98] font-medium tracking-[-1.76px] text-ink sm:text-[56px] xl:text-[72px] xl:tracking-[-2.88px]">
-          Learn to build AI systems that work in the real world.
+          {hero.title}
         </h1>
         <p className="max-w-[600px] text-body-m text-ink-2">
-          Master Programming, AI &amp; Core Tech Skills in One Place
+          {hero.subtitle}
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <Button href="#paths" size="lg">
-            View learning paths
+            {hero.primaryCta}
           </Button>
           <Button href="#enroll" size="lg" variant="outline">
-            Download syllabus
+            {hero.secondaryCta}
           </Button>
         </div>
         <div className="flex items-center gap-5">
           <Icon name="learner-avatars" width={88} height={28} />
           <span className="text-body-s text-ink-2">
-            4.9/5 from 2,400+ learners
+            {hero.rating}
           </span>
         </div>
       </div>

@@ -1,33 +1,9 @@
+import { getSiteContent, initials } from "@/lib/magic-api";
 import { Icon, SectionHeading, sectionX } from "./ui";
 
-const stories = [
-  {
-    quote:
-      "The academy replaced six months of scattered tutorials with a clear build–measure–improve loop. I shipped a credible RAG system and could finally explain every tradeoff.",
-    initials: "NW",
-    name: "Noah Williams",
-    role: "Data analyst → AI engineer",
-    outcome: "Hired in 10 weeks",
-  },
-  {
-    quote:
-      "The evaluation module changed how our team works. We stopped demo-driven development and started making decisions from test sets, traces, and user signals.",
-    initials: "PS",
-    name: "Priya Shah",
-    role: "Senior product manager",
-    outcome: "Promoted to AI product lead",
-  },
-  {
-    quote:
-      "The mentor reviews were exacting and practical. My capstone became the architecture we now use for an internal support copilot.",
-    initials: "ML",
-    name: "Marcus Lee",
-    role: "Full-stack developer",
-    outcome: "Pilot adopted at work",
-  },
-];
-
-export function Testimonials() {
+export async function Testimonials() {
+  const { testimonials: stories } = await getSiteContent();
+  if (stories.length === 0) return null;
   return (
     <section className={`flex flex-col gap-14 py-20 lg:py-28 ${sectionX}`}>
       <SectionHeading
@@ -48,7 +24,7 @@ export function Testimonials() {
             </blockquote>
             <figcaption className="mt-auto flex w-full items-center gap-3">
               <span className="flex size-[38px] shrink-0 items-center justify-center rounded-full bg-cyan/10 text-caption text-cyan">
-                {story.initials}
+                {initials(story.name)}
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-[3px]">
                 <span className="text-label-m text-ink">{story.name}</span>

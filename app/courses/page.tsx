@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getCourses, type Course } from "@/lib/magic-api"
 import { CourseCard } from "../_components/course-card"
 import { Footer } from "../_components/footer"
 import { Navbar } from "../_components/navbar"
@@ -39,49 +40,6 @@ const programAreas = [
   "Algorithms",
   "AI + Data Science",
   "Networks + Security"
-]
-
-const modules = [
-  {
-    title: "Foundation of IT & Database",
-    description:
-      "Fundamentals of information systems, relational database architecture, ERD design, and mastering SQL queries for complex data manipulation."
-  },
-  {
-    title: "Algorithms & Data Structures",
-    description:
-      "Problem-solving logic, structural computational thinking, time and space complexity analysis (Big O Notation), and optimization strategies."
-  },
-  {
-    title: "Python Programming & Automation",
-    description:
-      "Core Python syntax, object-oriented programming (OOP), automation scripts, and essential data science libraries (NumPy, Pandas, Matplotlib)."
-  },
-  {
-    title: "Machine Learning",
-    description:
-      "Supervised and unsupervised learning, regression, classification, decision trees, clustering algorithms, and model evaluation techniques."
-  },
-  {
-    title: "Deep Learning & Neural Networks",
-    description:
-      "Building and training deep neural networks, Convolutional Neural Networks (CNNs), and Recurrent Neural Networks (RNNs) using TensorFlow and PyTorch."
-  },
-  {
-    title: "Data Mining & Big Analytics",
-    description:
-      "Extracting valuable patterns and actionable intelligence from massive, unstructured datasets using modern data mining techniques."
-  },
-  {
-    title: "Artificial Intelligence (AI)",
-    description:
-      "Intelligent systems engineering, Natural Language Processing (NLP), chatbots, Computer Vision, and basic robotics logic."
-  },
-  {
-    title: "Foundation of Network Systems",
-    description:
-      "Network topology, OSI model, IP addressing & subnetting, client-server architecture, protocols (TCP/IP, HTTP, DNS), and cloud infrastructure fundamentals."
-  }
 ]
 
 const pad = (n: number) => String(n).padStart(2, "0")
@@ -135,7 +93,7 @@ function CourseSelector() {
   )
 }
 
-function CourseOverview() {
+function CourseOverview({ modules }: { modules: Course[] }) {
   return (
     <section
       id='overview'
@@ -198,7 +156,7 @@ function CourseOverview() {
   )
 }
 
-function Curriculum() {
+function Curriculum({ modules }: { modules: Course[] }) {
   const total = pad(modules.length)
   return (
     <section className={`flex flex-col gap-10 bg-white pt-[76px] pb-24 ${sectionX}`}>
@@ -222,12 +180,13 @@ function Curriculum() {
 
       <ol className='grid items-start gap-[18px] md:grid-cols-2'>
         {modules.map((mod, i) => (
-          <li key={mod.title} className='contents'>
+          <li key={mod.id} className='contents'>
             <CourseCard
-              featured
-              chip='VIP • CORE SEQUENCE'
+              featured={mod.featured}
+              chip={mod.tagline || "VIP • CORE SEQUENCE"}
               title={mod.title}
-              description={mod.description}
+              description={mod.shortDescription}
+              coverImage={mod.coverImage}
               meta={[`MODULE ${pad(i + 1)}`]}
               footer={`${pad(i + 1)} / ${total}`}
               action={{ label: "Curriculum area →", href: "#overview" }}
@@ -250,14 +209,15 @@ function Curriculum() {
   )
 }
 
-export default function Courses() {
+export default async function Courses() {
+  const modules = await getCourses()
   return (
     <>
       <Navbar />
       <main className='flex-1'>
         <CourseSelector />
-        <CourseOverview />
-        <Curriculum />
+        <CourseOverview modules={modules} />
+        <Curriculum modules={modules} />
       </main>
       <Footer />
     </>

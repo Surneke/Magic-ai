@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Button, Icon } from "./ui"
 
 export type CourseCardProps = {
@@ -8,6 +9,8 @@ export type CourseCardProps = {
   footer: string
   action: { label: string; href: string }
   featured?: boolean
+  /** Absolute image URL from the back office; falls back to the gradient + star. */
+  coverImage?: string | null
 }
 
 export function CourseCard({
@@ -17,7 +20,8 @@ export function CourseCard({
   meta,
   footer,
   action,
-  featured
+  featured,
+  coverImage
 }: CourseCardProps) {
   return (
     <article
@@ -26,11 +30,15 @@ export function CourseCard({
       }`}
     >
       <div
-        className={`flex h-[200px] shrink-0 items-center justify-center bg-linear-to-r ${
+        className={`relative flex h-[200px] shrink-0 items-center justify-center overflow-hidden bg-linear-to-r ${
           featured ? "from-[#3d2b0d] to-[#171233]" : "from-[#1c1640] to-[#0a2933]"
         }`}
       >
-        <Icon name={featured ? "cover-star-vip" : "cover-star"} width={56} />
+        {coverImage ? (
+          <Image src={coverImage} alt='' fill unoptimized className='object-cover' />
+        ) : (
+          <Icon name={featured ? "cover-star-vip" : "cover-star"} width={56} />
+        )}
       </div>
       <div className='flex flex-1 flex-col items-start gap-4 p-6'>
         <div
@@ -47,7 +55,7 @@ export function CourseCard({
         </div>
         <h3 className='text-h3 text-ink'>{title}</h3>
         <p className='text-body-s text-ink-2'>{description}</p>
-        <div className='flex gap-4 text-caption text-ink-3'>
+        <div className='flex gap-4 text-caption text-ink-3 uppercase'>
           {meta.map(m => (
             <span key={m}>{m}</span>
           ))}

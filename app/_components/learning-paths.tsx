@@ -1,36 +1,11 @@
 import Link from "next/link";
+import { formatPrice, getCourses, levelLabel } from "@/lib/magic-api";
 import { CourseCard } from "./course-card";
 import { Icon, SectionHeading, sectionX } from "./ui";
 
-const courses = [
-  {
-    chip: "FOUNDATIONS · 6 WEEKS",
-    title: "Applied AI Engineering",
-    description:
-      "Build fluency across prompting, APIs, retrieval, evaluation, and responsible deployment.",
-    meta: ["6 weeks", "18 lessons"],
-    price: "From $690",
-  },
-  {
-    chip: "SPECIALIZATION · 8 WEEKS",
-    title: "LLM Systems in Production",
-    description:
-      "Design observable, efficient systems with RAG, agents, guardrails, and test-driven evaluation.",
-    meta: ["8 weeks", "24 lessons"],
-    price: "From $1,490",
-    featured: true,
-  },
-  {
-    chip: "PRODUCT · 6 WEEKS",
-    title: "AI Product Builder",
-    description:
-      "Turn an AI opportunity into a validated product with strong UX, metrics, and operational rigor.",
-    meta: ["6 weeks", "16 lessons"],
-    price: "From $690",
-  },
-];
-
-export function LearningPaths() {
+export async function LearningPaths() {
+  // The first three published courses, in the order set in the back office.
+  const courses = (await getCourses()).slice(0, 3);
   return (
     <section
       id="paths"
@@ -52,11 +27,16 @@ export function LearningPaths() {
         </Link>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {courses.map(({ price, ...course }) => (
+        {courses.map((course) => (
           <CourseCard
-            key={course.title}
-            {...course}
-            footer={price}
+            key={course.id}
+            chip={course.tagline || [levelLabel(course.level), course.duration].filter(Boolean).join(" · ")}
+            title={course.title}
+            description={course.shortDescription}
+            meta={[course.duration, levelLabel(course.level)].filter(Boolean)}
+            footer={formatPrice(course.price, course.currency) ?? course.duration}
+            featured={course.featured}
+            coverImage={course.coverImage}
             action={{ label: "View path", href: "#enroll" }}
           />
         ))}
